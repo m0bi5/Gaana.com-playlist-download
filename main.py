@@ -47,7 +47,7 @@ pref = {"download.default_directory" : "C:\\CarMusic"}                          
 
 chromeOptions.add_experimental_option("prefs",pref)
 browser=webdriver.Chrome(executable_path="C:\\chromedriver.exe",chrome_options=chromeOptions)
-browser.get("http://gaana.com/playlist/neemabhasi-bxxha-carmusic")                                  #Link to playlist
+browser.get("http://gaana.com/playlist/your_playlist")                                  #Link to playlist
 
 ########################################################################
 #Generates a list of all the songs in provided Gaana playlist.
