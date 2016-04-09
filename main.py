@@ -43,11 +43,11 @@ import time
 #Initialise
 ########################################################################
 chromeOptions = webdriver.ChromeOptions()
-pref = {"download.default_directory" : "C:\\CarMusic"}                                              #Change default download folder
+pref = {"download.default_directory" : "C:\\CarMusic"}                                                                            #Change default download folder
 
 chromeOptions.add_experimental_option("prefs",pref)
 browser=webdriver.Chrome(executable_path="C:\\chromedriver.exe",chrome_options=chromeOptions)
-browser.get("http://gaana.com/playlist/neemabhasi-bxxha-carmusic")                                  #Link to playlist
+browser.get("http://gaana.com/playlist/neemabhasi-bxxha-carmusic")                                                                #Link to playlist
 
 ########################################################################
 #Generates a list of all the songs in provided Gaana playlist.
@@ -66,13 +66,14 @@ def get():
 def download(s):
     link="https://www.youtube.com/results?search_query="+s
     browser.get(link)
-    browser.find_elements_by_class_name("yt-ui-ellipsis")[2].click()  
+    browser.execute("document.cookie=\"VISITOR_INFO1_LIVE=oKckVSqvaGw; path=/; domain=.youtube.com\";window.location.reload();")  #Disable ads
+    browser.find_elements_by_class_name("yt-ui-ellipsis")[0].click()  
     be=browser.current_url
     browser.get("https://www.youtube2mp3.cc/")
     t=browser.find_element_by_id("input")
     t.send_keys(be)
     browser.find_element_by_id("button").click()
-    time.sleep(5)                                                                                   #Wait for dynamically generated download button to load
+    time.sleep(5)                                                                                                                 #Wait for dynamically generated download button to load
     browser.execute_script("document.getElementById(\"download\").click()")
     print(s+" downloaded!")
 
